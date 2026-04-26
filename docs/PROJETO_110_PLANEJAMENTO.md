@@ -28,6 +28,8 @@ O MVP deve permitir que o usuario:
 
 ## 3. Escopo do MVP
 
+Status: validado como escopo inicial do MVP.
+
 ### Dentro do MVP
 
 - Cadastro de treinos.
@@ -39,6 +41,15 @@ O MVP deve permitir que o usuario:
 - Dashboard simples.
 - Funcionamento local no dispositivo.
 - Base de dados local desde o inicio.
+
+### Ordem sugerida de entrega
+
+1. Base tecnica, banco local, testes e cadastro de treinos.
+2. Cadastro de exercicios dentro dos treinos.
+3. Registro de treino realizado.
+4. Historico de treinos realizados.
+5. Registro de peso e medidas corporais.
+6. Dashboard simples de progresso.
 
 ### Fora do MVP inicial
 
@@ -469,11 +480,11 @@ A sprint sera considerada concluida quando:
 
 ### Produto
 
-- [ ] Revisar escopo do MVP.
-- [ ] Validar epicos.
-- [ ] Validar historias iniciais.
-- [ ] Priorizar backlog.
-- [ ] Definir o que entra na Sprint 1.
+- [x] Revisar escopo do MVP.
+- [x] Validar epicos.
+- [x] Validar historias iniciais.
+- [x] Priorizar backlog.
+- [x] Definir o que entra na Sprint 1.
 
 ### Tecnico
 
@@ -501,6 +512,12 @@ A sprint sera considerada concluida quando:
 - MVP limitado a funcionamento local.
 - Backend e autenticacao ficaram fora do MVP.
 - Definido que o projeto deve priorizar aprendizado, clareza e evolucao gradual.
+
+### 2026-04-25 - Escopo do MVP validado
+
+- MVP aprovado com foco em treinos, exercicios, registros de treino, historico, peso, medidas e dashboard simples.
+- Definido que a entrega deve ser gradual, com Sprint 1 limitada a fundacao tecnica, banco local, testes, cadastro e listagem de treinos.
+- Confirmado que backend, autenticacao, sincronizacao em nuvem, inteligencia artificial, graficos avancados e controle alimentar ficam fora do MVP inicial.
 
 ### 2026-04-25 - Banco local desde o inicio
 
