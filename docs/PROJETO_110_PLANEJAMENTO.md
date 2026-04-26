@@ -411,6 +411,8 @@ para entender rapidamente meu progresso.
 
 # Sprint 1 - Fundacao tecnica e treinos simples
 
+Status: concluida.
+
 ## Objetivo da sprint
 
 Criar a base inicial do Projeto 110 com banco local e permitir que o usuario cadastre e visualize treinos simples.
@@ -460,21 +462,34 @@ Criar a base inicial do Projeto 110 com banco local e permitir que o usuario cad
 
 A sprint sera considerada concluida quando:
 
-- [ ] O app abrir corretamente.
-- [ ] O banco local estiver definido e funcionando.
-- [ ] Jest estiver configurado e com ao menos um teste unitario simples executando.
-- [ ] O usuario conseguir cadastrar um treino com nome.
-- [ ] O treino cadastrado aparecer na lista.
-- [ ] Os dados permanecerem salvos apos fechar e abrir o app.
-- [ ] A estrutura inicial estiver simples e compreensivel.
+- [x] O app abrir corretamente.
+- [x] O banco local estiver definido e funcionando.
+- [x] Jest estiver configurado e com ao menos um teste unitario simples executando.
+- [x] O usuario conseguir cadastrar um treino com nome.
+- [x] O treino cadastrado aparecer na lista.
+- [x] Os dados permanecerem salvos apos fechar e abrir o app.
+- [x] A estrutura inicial estiver simples e compreensivel.
+
+## Resumo da entrega da Sprint 1
+
+- Projeto Expo criado com React Native e TypeScript.
+- Navegacao inicial configurada com React Navigation.
+- Banco local configurado com SQLite via `expo-sqlite`.
+- Tabela `workouts` criada via migration simples.
+- Cadastro simples de treino implementado.
+- Listagem de treinos salvos implementada.
+- Persistencia local validada no Expo Go.
+- Jest configurado com teste unitario inicial.
+- Estrutura de telas padronizada com `index.tsx` e `styles.ts`.
+- Ajuste de safe area aplicado para evitar sobreposicao com a navegacao do Android.
 
 ## 9. Planos futuros
 
 ### Curto prazo
 
-- Criar projeto mobile.
-- Criar historias da Sprint 1 no GitHub.
-- Implementar cadastro e listagem de treinos.
+- Planejar Sprint 2.
+- Detalhar cadastro de exercicios dentro de treinos.
+- Definir ajustes pequenos de UX identificados apos uso inicial.
 
 ### Medio prazo
 
@@ -509,15 +524,15 @@ A sprint sera considerada concluida quando:
 - [x] Decidir se sera usado Expo ou React Native CLI.
 - [x] Definir biblioteca de navegacao.
 - [x] Definir estrategia simples para migracoes do banco.
-- [ ] Configurar Jest para testes unitarios.
-- [ ] Definir estrutura inicial de pastas.
+- [x] Configurar Jest para testes unitarios.
+- [x] Definir estrutura inicial de pastas.
 
 ### GitHub
 
-- [ ] Criar repositorio ou validar repositorio atual.
+- [x] Criar repositorio ou validar repositorio atual.
 - [ ] Criar labels para backlog.
 - [ ] Criar milestones.
-- [ ] Criar issues das historias da Sprint 1.
+- [x] Criar issues das historias da Sprint 1.
 - [ ] Criar milestone da Sprint 1.
 
 ## 11. Historico de decisoes
@@ -551,3 +566,14 @@ A sprint sera considerada concluida quando:
 - Definido uso de StyleSheet do React Native para estilos no inicio.
 - Definido uso de Jest para testes unitarios desde a fundacao.
 - Decidido nao usar backend, autenticacao, ORM ou estado global no primeiro momento.
+
+### 2026-04-25 - Sprint 1 concluida
+
+- Base mobile criada com Expo, React Native e TypeScript.
+- Navegacao inicial entregue.
+- Banco local com SQLite configurado.
+- Cadastro e listagem de treinos simples entregues.
+- Persistencia local validada no Expo Go.
+- Jest configurado com teste unitario inicial.
+- Primeiro bug de layout Android corrigido com safe area.
+- Sprint 1 encerrada com foco mantido no escopo planejado.

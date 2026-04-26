@@ -6,15 +6,19 @@ O Projeto 110 esta sendo construido de forma gradual, com foco em aprendizado, c
 
 ## Status atual
 
-Fase atual: inicio da Sprint 1.
+Fase atual: Sprint 1 concluida.
 
-O planejamento inicial do produto foi validado. Neste momento, o foco do projeto e construir a fundacao tecnica do app:
+O planejamento inicial do produto foi validado e a primeira entrega tecnica foi concluida.
+
+O app ja possui:
 
 - Base Expo com React Native e TypeScript.
-- Configuracao de testes unitarios.
-- Banco local com SQLite.
 - Navegacao inicial.
-- Cadastro e listagem de treinos.
+- Banco local com SQLite.
+- Cadastro simples de treinos.
+- Listagem de treinos salvos.
+- Persistencia local validada no Expo Go.
+- Testes unitarios com Jest.
 
 ## Objetivo do MVP
 
@@ -84,18 +88,35 @@ No Windows, se o PowerShell bloquear `npx`, use o executavel `.cmd`:
 npx.cmd expo start
 ```
 
-## Primeira sprint prevista
+## Como rodar os testes
+
+Execute:
+
+```bash
+npm test
+```
+
+No Windows, se necessario:
+
+```bash
+npm.cmd test
+```
+
+## Sprint 1 concluida
 
 Sprint 1 - Fundacao tecnica e treinos simples.
 
-Objetivo:
+Entregas:
 
-- Definir a stack inicial.
-- Escolher o banco local.
-- Criar a base do app.
-- Configurar testes unitarios com Jest.
-- Criar o fluxo inicial de cadastro e listagem de treinos.
-- Garantir que os dados sejam persistidos localmente.
+- Stack inicial definida.
+- App mobile criado.
+- Navegacao inicial configurada.
+- SQLite configurado com tabela `workouts`.
+- Cadastro de treino implementado.
+- Listagem de treinos implementada.
+- Persistencia local validada.
+- Jest configurado com teste unitario inicial.
+- Safe area ajustada para Android.
 
 ## Fora do MVP inicial
 
@@ -110,8 +131,7 @@ Objetivo:
 
 ## Proximos passos
 
-- Definir estrutura inicial de pastas.
-- Configurar testes unitarios com Jest.
-- Configurar navegacao inicial.
-- Configurar SQLite via `expo-sqlite`.
-- Implementar cadastro e listagem de treinos.
+- Planejar Sprint 2.
+- Detalhar cadastro de exercicios dentro dos treinos.
+- Evoluir o modelo de dados para exercicios.
+- Manter as proximas entregas pequenas e validadas no Expo Go.
