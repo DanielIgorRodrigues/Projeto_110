@@ -655,22 +655,62 @@ para saber o que faz parte da rotina selecionada.
 
 - Criar funcao `listExercisesByWorkout` no repository de exercicios.
 
-## Modelo inicial sugerido para exercicios
+## Modelo aprovado para exercicios
 
 ```sql
 CREATE TABLE workout_exercises (
   id TEXT PRIMARY KEY NOT NULL,
   workout_id TEXT NOT NULL,
   name TEXT NOT NULL,
+  muscle_group TEXT,
+  equipment TEXT,
   planned_sets INTEGER,
-  planned_reps INTEGER,
+  planned_reps TEXT,
+  planned_weight REAL,
+  rest_seconds INTEGER,
   notes TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0,
   is_active INTEGER NOT NULL DEFAULT 1,
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   FOREIGN KEY (workout_id) REFERENCES workouts(id)
 );
 ```
+
+## Regras do modelo de exercicios
+
+- `name` e obrigatorio.
+- `workout_id` vincula o exercicio ao treino.
+- `muscle_group` e opcional.
+- `equipment` e opcional.
+- `planned_sets` e opcional.
+- `planned_reps` deve ser texto para aceitar formatos reais, como `8-12`, `15/12/10` ou `ate a falha`.
+- `planned_weight` representa carga planejada, nao carga executada.
+- `rest_seconds` representa descanso planejado entre series.
+- `notes` guarda observacoes de execucao ou orientacoes tecnicas.
+- `sort_order` define a ordem do exercicio dentro do treino.
+- `is_active` permite exclusao logica.
+- A execucao real do treino sera tratada futuramente em tabelas de sessao, nao em `workout_exercises`.
+
+## Planejamento crescente de UX para exercicios
+
+Para evitar criar campos no banco e esquecer de implementar na interface, cada campo tera uma fase planejada de uso.
+
+| Campo | Uso no banco | UX na Sprint 2 | UX futura |
+|---|---|---|---|
+| `name` | Obrigatorio | Campo obrigatorio | Mantem |
+| `muscle_group` | Opcional | Campo opcional simples | Pode virar seletor padronizado |
+| `equipment` | Opcional | Campo opcional simples | Pode virar seletor padronizado |
+| `planned_sets` | Opcional | Campo numerico opcional | Pode ter validacoes melhores |
+| `planned_reps` | Opcional | Campo texto opcional | Pode receber sugestoes/padroes |
+| `planned_weight` | Opcional | Campo numerico opcional | Pode integrar evolucao de carga |
+| `rest_seconds` | Opcional | Campo numerico opcional | Pode virar seletor de descanso |
+| `notes` | Opcional | Campo texto opcional | Mantem |
+| `sort_order` | Controle interno | Definido automaticamente | Pode permitir reordenacao manual |
+| `is_active` | Controle interno | Nao aparece na UX | Usado em exclusao logica |
+
+Na Sprint 2, a interface deve expor os campos principais de planejamento do exercicio, mesmo que com componentes simples.
+Campos internos como `sort_order` e `is_active` nao devem aparecer diretamente para o usuario.
 
 ## Tarefas tecnicas
 
