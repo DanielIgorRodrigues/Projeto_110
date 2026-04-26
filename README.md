@@ -46,17 +46,20 @@ O MVP deve permitir que o usuario:
 - Adicionar bibliotecas apenas quando houver necessidade clara.
 - Manter o projeto compreensivel para fins de aprendizado.
 
-## Stack prevista
+## Stack inicial aprovada
 
-A stack ainda sera definida em conversa tecnica, mas a direcao inicial considera:
+A stack inicial do Projeto 110 sera:
 
+- Expo.
 - React Native.
 - TypeScript.
-- Banco de dados local.
-- Navegacao simples.
-- Componentes simples.
+- React Navigation.
+- SQLite via `expo-sqlite`.
+- StyleSheet do React Native.
+- Jest para testes unitarios.
+- Estado local com hooks no inicio.
 
-SQLite e o principal candidato para banco local, mas a decisao final ainda sera avaliada considerando simplicidade, compatibilidade com React Native e facilidade de aprendizado.
+Neste primeiro momento, nao sera usado backend, autenticacao, ORM ou biblioteca de estado global.
 
 ## Documentacao do projeto
 
@@ -75,6 +78,7 @@ Objetivo:
 - Definir a stack inicial.
 - Escolher o banco local.
 - Criar a base do app.
+- Configurar testes unitarios com Jest.
 - Criar o fluxo inicial de cadastro e listagem de treinos.
 - Garantir que os dados sejam persistidos localmente.
 
@@ -91,10 +95,8 @@ Objetivo:
 
 ## Proximos passos
 
-- Realizar conversa tecnica para definicao da stack.
-- Decidir banco local.
+- Detalhar modelo inicial do banco local.
 - Definir estrutura inicial de pastas.
 - Criar historias da Sprint 1 no GitHub.
 - Criar milestone da Sprint 1.
 - Iniciar implementacao somente apos as decisoes iniciais estarem claras.
-

@@ -73,18 +73,26 @@ Usar banco local e uma boa decisao para o Projeto 110 porque o app tera dados re
 - SQLite.
 - Outra solucao local equivalente, se fizer mais sentido para React Native e para o nivel atual do projeto.
 
-### Ponto ainda pendente
+### Decisao aprovada
 
-A tecnologia exata do banco local ainda sera definida em conversa tecnica.
+O Projeto 110 usara a seguinte stack inicial:
 
-Antes da implementacao, devemos comparar:
+- Expo.
+- React Native.
+- TypeScript.
+- React Navigation.
+- SQLite via `expo-sqlite`.
+- StyleSheet do React Native.
+- Jest para testes unitarios.
+- Estado local com hooks no inicio.
 
-- Facilidade de aprendizado.
-- Compatibilidade com React Native.
-- Complexidade de configuracao.
-- Qualidade da documentacao.
-- Capacidade de evoluir com o projeto.
-- Necessidade ou nao de ORM/query builder.
+Neste primeiro momento, nao sera usado backend, autenticacao, ORM ou biblioteca de estado global.
+
+### Justificativa
+
+Essa stack reduz complexidade inicial, favorece aprendizado, permite evolucao gradual e atende ao requisito de funcionamento local com banco de dados desde o inicio.
+
+Jest entra desde a fundacao do projeto para permitir testes unitarios simples de regras, validacoes, funcoes auxiliares e acesso a dados quando fizer sentido.
 
 ## 5. Epicos
 
@@ -331,6 +339,7 @@ Criar a base inicial do Projeto 110 com banco local e permitir que o usuario cad
 
 - Definir stack inicial.
 - Definir banco de dados local.
+- Configurar testes unitarios com Jest.
 - Criar estrutura inicial do app.
 - Criar navegacao basica.
 - Criar modelo inicial de treino.
@@ -359,6 +368,7 @@ Criar a base inicial do Projeto 110 com banco local e permitir que o usuario cad
 - Definir tecnologia do banco local.
 - Definir estrutura inicial de pastas.
 - Criar projeto React Native com TypeScript.
+- Configurar Jest para testes unitarios.
 - Configurar navegacao inicial.
 - Criar tabela/estrutura de treinos no banco local.
 - Criar camada simples de acesso a dados para treinos.
@@ -372,6 +382,7 @@ A sprint sera considerada concluida quando:
 
 - [ ] O app abrir corretamente.
 - [ ] O banco local estiver definido e funcionando.
+- [ ] Jest estiver configurado e com ao menos um teste unitario simples executando.
 - [ ] O usuario conseguir cadastrar um treino com nome.
 - [ ] O treino cadastrado aparecer na lista.
 - [ ] Os dados permanecerem salvos apos fechar e abrir o app.
@@ -381,7 +392,7 @@ A sprint sera considerada concluida quando:
 
 ### Curto prazo
 
-- Finalizar decisao de stack.
+- Detalhar modelo inicial do banco local.
 - Criar historias da Sprint 1 no GitHub.
 - Criar projeto mobile.
 - Implementar cadastro e listagem de treinos.
@@ -414,10 +425,11 @@ A sprint sera considerada concluida quando:
 
 ### Tecnico
 
-- [ ] Discutir stack do app.
-- [ ] Escolher tecnologia do banco local.
-- [ ] Decidir se sera usado Expo ou React Native CLI.
-- [ ] Definir biblioteca de navegacao.
+- [x] Discutir stack do app.
+- [x] Escolher tecnologia do banco local.
+- [x] Decidir se sera usado Expo ou React Native CLI.
+- [x] Definir biblioteca de navegacao.
+- [ ] Configurar Jest para testes unitarios.
 - [ ] Definir estrutura inicial de pastas.
 - [ ] Definir estrategia simples para migracoes do banco.
 
@@ -443,3 +455,12 @@ A sprint sera considerada concluida quando:
 - Decidido que o app deve usar uma base de dados local desde a primeira versao.
 - SQLite foi indicado como candidato inicial.
 - A escolha final sera feita em conversa tecnica antes da implementacao.
+
+### 2026-04-25 - Stack inicial aprovada
+
+- Definido uso de Expo, React Native e TypeScript.
+- Definido uso de React Navigation para navegacao.
+- Definido uso de SQLite via `expo-sqlite` como banco local.
+- Definido uso de StyleSheet do React Native para estilos no inicio.
+- Definido uso de Jest para testes unitarios desde a fundacao.
+- Decidido nao usar backend, autenticacao, ORM ou estado global no primeiro momento.
