@@ -483,12 +483,231 @@ A sprint sera considerada concluida quando:
 - Estrutura de telas padronizada com `index.tsx` e `styles.ts`.
 - Ajuste de safe area aplicado para evitar sobreposicao com a navegacao do Android.
 
-## 9. Planos futuros
+## 9. Planejamento da segunda sprint
+
+# Sprint 2 - Exercicios do treino e gestao de treinos
+
+Status: planejada.
+
+## Objetivo da sprint
+
+Permitir que o usuario gerencie melhor os treinos cadastrados e adicione exercicios dentro de cada treino.
+
+A Sprint 2 deve evoluir o app da seguinte forma:
+
+- O usuario cria um treino.
+- O usuario consegue abrir esse treino.
+- O usuario consegue editar ou excluir esse treino.
+- O usuario consegue cadastrar exercicios dentro desse treino.
+- O usuario consegue visualizar os exercicios do treino.
+
+## Escopo da sprint
+
+- Criar tela de detalhe do treino.
+- Permitir abrir um treino pela lista.
+- Permitir alterar nome de um treino cadastrado.
+- Permitir excluir treino cadastrado.
+- Criar tabela `workout_exercises`.
+- Criar repository de exercicios.
+- Criar cadastro simples de exercicio dentro de um treino.
+- Listar exercicios dentro do treino.
+- Criar testes unitarios para regras de exercicio.
+- Atualizar documentacao ao final da sprint.
+
+## Fora do escopo
+
+- Registrar treino realizado.
+- Registrar carga executada.
+- Historico de treinos realizados.
+- Peso corporal.
+- Medidas corporais.
+- Dashboard.
+- Edicao de exercicio.
+- Exclusao de exercicio.
+- Biblioteca pronta de exercicios.
+- Series avancadas por exercicio.
+
+## Historias incluidas
+
+- Abrir detalhe de um treino.
+- Alterar treino cadastrado.
+- Excluir treino cadastrado.
+- Cadastrar exercicio dentro de um treino.
+- Listar exercicios de um treino.
+
+## Historia de usuario - Abrir detalhe de treino
+
+Como usuario do Projeto 110,  
+quero abrir um treino cadastrado,  
+para visualizar e gerenciar os exercicios desse treino.
+
+### Criterios de aceite
+
+- [ ] Deve ser possivel tocar em um treino da lista.
+- [ ] O app deve abrir uma tela de detalhe do treino.
+- [ ] A tela deve mostrar o nome do treino.
+- [ ] A tela deve mostrar estado vazio quando nao houver exercicios.
+
+### Regras de negocio
+
+- Apenas treinos ativos devem aparecer na lista principal.
+- O detalhe deve receber o identificador do treino.
+
+### Observacoes tecnicas
+
+- Criar rota `WorkoutDetails`.
+- Passar `workoutId` por parametro de navegacao.
+
+## Historia de usuario - Alterar treino cadastrado
+
+Como usuario do Projeto 110,  
+quero alterar o nome de um treino cadastrado,  
+para corrigir ou melhorar a organizacao da minha rotina.
+
+### Criterios de aceite
+
+- [ ] Deve ser possivel acessar uma acao de editar treino.
+- [ ] Deve ser possivel alterar o nome do treino.
+- [ ] Nome vazio nao deve ser aceito.
+- [ ] A lista deve refletir o nome atualizado.
+- [ ] A data de atualizacao deve ser alterada.
+
+### Regras de negocio
+
+- Apenas o nome do treino sera editado nesta sprint.
+- O treino deve continuar com o mesmo `id`.
+- A edicao nao deve apagar exercicios vinculados ao treino.
+
+### Observacoes tecnicas
+
+- Reaproveitar regras de validacao de nome de treino.
+- Criar funcao `updateWorkoutName` no repository de treinos.
+
+## Historia de usuario - Excluir treino cadastrado
+
+Como usuario do Projeto 110,  
+quero excluir um treino cadastrado,  
+para remover treinos criados por engano ou que nao uso mais.
+
+### Criterios de aceite
+
+- [ ] Deve existir uma acao para excluir treino.
+- [ ] Deve haver confirmacao antes de excluir.
+- [ ] O treino excluido nao deve aparecer na lista principal.
+- [ ] A exclusao deve preservar possibilidade de historico futuro.
+
+### Regras de negocio
+
+- A exclusao deve ser logica, alterando `is_active` para `0`.
+- O registro nao deve ser apagado fisicamente do banco.
+- Exercicios vinculados ao treino podem ficar inativos em uma etapa futura; nesta sprint, o foco e ocultar o treino da lista.
+
+### Observacoes tecnicas
+
+- Criar funcao `deactivateWorkout` no repository de treinos.
+- Usar confirmacao nativa simples antes da exclusao.
+
+## Historia de usuario - Cadastrar exercicio em treino
+
+Como usuario do Projeto 110,  
+quero cadastrar exercicios dentro de um treino,  
+para organizar quais movimentos fazem parte da minha rotina.
+
+### Criterios de aceite
+
+- [ ] Deve ser possivel cadastrar exercicio dentro de um treino.
+- [ ] O nome do exercicio deve ser obrigatorio.
+- [ ] Deve ser possivel informar series planejadas.
+- [ ] Deve ser possivel informar repeticoes planejadas.
+- [ ] Observacao deve ser opcional.
+- [ ] O exercicio deve aparecer na lista do treino apos salvar.
+
+### Regras de negocio
+
+- Um exercicio pertence a um treino.
+- Um treino pode ter varios exercicios.
+- Nome do exercicio e obrigatorio.
+- Series e repeticoes podem ser opcionais no primeiro momento.
+
+### Observacoes tecnicas
+
+- Criar tabela `workout_exercises`.
+- Comecar sem biblioteca pronta de exercicios.
+
+## Historia de usuario - Listar exercicios do treino
+
+Como usuario do Projeto 110,  
+quero visualizar os exercicios cadastrados em um treino,  
+para saber o que faz parte da rotina selecionada.
+
+### Criterios de aceite
+
+- [ ] A tela de detalhe deve listar exercicios do treino.
+- [ ] Quando nao houver exercicios, deve mostrar estado vazio.
+- [ ] A lista deve atualizar apos cadastrar novo exercicio.
+
+### Regras de negocio
+
+- A lista deve exibir apenas exercicios ativos.
+- Os exercicios devem pertencer ao treino selecionado.
+
+### Observacoes tecnicas
+
+- Criar funcao `listExercisesByWorkout` no repository de exercicios.
+
+## Modelo inicial sugerido para exercicios
+
+```sql
+CREATE TABLE workout_exercises (
+  id TEXT PRIMARY KEY NOT NULL,
+  workout_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  planned_sets INTEGER,
+  planned_reps INTEGER,
+  notes TEXT,
+  is_active INTEGER NOT NULL DEFAULT 1,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY (workout_id) REFERENCES workouts(id)
+);
+```
+
+## Tarefas tecnicas
+
+- Criar migration versao 2 do banco.
+- Criar tabela `workout_exercises`.
+- Criar tipos de exercicio.
+- Criar repository de exercicios.
+- Criar regras simples de validacao de exercicio.
+- Criar testes unitarios para regras de exercicio.
+- Criar tela de detalhe do treino.
+- Criar tela de cadastro de exercicio.
+- Atualizar navegacao com novas rotas.
+- Permitir abrir treino pela lista.
+- Permitir editar nome do treino.
+- Permitir excluir treino com exclusao logica.
+- Listar exercicios dentro do treino.
+
+## Criterio de conclusao da sprint
+
+A sprint sera considerada concluida quando:
+
+- [ ] O usuario conseguir abrir um treino cadastrado.
+- [ ] O usuario conseguir alterar o nome de um treino.
+- [ ] O usuario conseguir excluir um treino da lista principal.
+- [ ] O usuario conseguir cadastrar exercicio dentro de um treino.
+- [ ] O exercicio aparecer na lista do treino.
+- [ ] Os exercicios permanecerem salvos apos fechar e abrir o app.
+- [ ] A migration do banco estiver funcionando.
+- [ ] Existir pelo menos um teste unitario para regra de exercicio.
+- [ ] A documentacao da Sprint 2 estiver atualizada.
+
+## 10. Planos futuros
 
 ### Curto prazo
 
-- Planejar Sprint 2.
 - Detalhar cadastro de exercicios dentro de treinos.
+- Detalhar edicao e exclusao de treinos.
 - Definir ajustes pequenos de UX identificados apos uso inicial.
 
 ### Medio prazo
@@ -507,7 +726,7 @@ A sprint sera considerada concluida quando:
 - Avaliar autenticacao.
 - Avaliar recursos inteligentes somente depois do MVP validado.
 
-## 10. TODO do projeto
+## 11. TODO do projeto
 
 ### Produto
 
@@ -516,6 +735,7 @@ A sprint sera considerada concluida quando:
 - [x] Validar historias iniciais.
 - [x] Priorizar backlog.
 - [x] Definir o que entra na Sprint 1.
+- [x] Planejar Sprint 2.
 
 ### Tecnico
 
@@ -535,7 +755,7 @@ A sprint sera considerada concluida quando:
 - [x] Criar issues das historias da Sprint 1.
 - [ ] Criar milestone da Sprint 1.
 
-## 11. Historico de decisoes
+## 12. Historico de decisoes
 
 ### 2026-04-25 - Inicio do planejamento
 
@@ -577,3 +797,10 @@ A sprint sera considerada concluida quando:
 - Jest configurado com teste unitario inicial.
 - Primeiro bug de layout Android corrigido com safe area.
 - Sprint 1 encerrada com foco mantido no escopo planejado.
+
+### 2026-04-25 - Sprint 2 planejada
+
+- Sprint 2 definida com foco em exercicios dentro de treinos.
+- Incluida gestao de treinos cadastrados: alterar nome e excluir treino.
+- Definido que exclusao de treino deve ser logica, usando `is_active = 0`.
+- Registro de treino realizado, historico, peso, medidas e dashboard continuam fora da Sprint 2.

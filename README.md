@@ -132,6 +132,9 @@ Entregas:
 ## Proximos passos
 
 - Planejar Sprint 2.
-- Detalhar cadastro de exercicios dentro dos treinos.
+- Implementar detalhe de treino.
+- Permitir alterar treinos cadastrados.
+- Permitir excluir treinos cadastrados com exclusao logica.
+- Implementar cadastro de exercicios dentro dos treinos.
 - Evoluir o modelo de dados para exercicios.
 - Manter as proximas entregas pequenas e validadas no Expo Go.
