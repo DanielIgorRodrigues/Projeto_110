@@ -6,20 +6,15 @@ O Projeto 110 esta sendo construido de forma gradual, com foco em aprendizado, c
 
 ## Status atual
 
-Fase atual: planejamento inicial do produto.
+Fase atual: inicio da Sprint 1.
 
-Neste momento, o foco do projeto e definir:
+O planejamento inicial do produto foi validado. Neste momento, o foco do projeto e construir a fundacao tecnica do app:
 
-- Visao do produto.
-- Escopo do MVP.
-- Epicos.
-- Historias de usuario.
-- Regras de negocio.
-- Stack inicial.
-- Arquitetura simples.
-- Primeira sprint.
-
-Ainda nao estamos na fase de implementacao do app.
+- Base Expo com React Native e TypeScript.
+- Configuracao de testes unitarios.
+- Banco local com SQLite.
+- Navegacao inicial.
+- Cadastro e listagem de treinos.
 
 ## Objetivo do MVP
 
@@ -69,6 +64,26 @@ O planejamento principal esta em:
 
 Esse documento deve ser usado como memoria viva do projeto, registrando decisoes, backlog, TODOs, sprint inicial e planos futuros.
 
+## Como rodar o app
+
+Instale as dependencias:
+
+```bash
+npm install
+```
+
+Inicie o Expo:
+
+```bash
+npm start
+```
+
+No Windows, se o PowerShell bloquear `npx`, use o executavel `.cmd`:
+
+```bash
+npx.cmd expo start
+```
+
 ## Primeira sprint prevista
 
 Sprint 1 - Fundacao tecnica e treinos simples.
@@ -95,8 +110,8 @@ Objetivo:
 
 ## Proximos passos
 
-- Detalhar modelo inicial do banco local.
 - Definir estrutura inicial de pastas.
-- Criar historias da Sprint 1 no GitHub.
-- Criar milestone da Sprint 1.
-- Iniciar implementacao somente apos as decisoes iniciais estarem claras.
+- Configurar testes unitarios com Jest.
+- Configurar navegacao inicial.
+- Configurar SQLite via `expo-sqlite`.
+- Implementar cadastro e listagem de treinos.
