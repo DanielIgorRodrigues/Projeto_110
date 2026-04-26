@@ -64,6 +64,11 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
   },
+  workoutHint: {
+    color: '#6b7280',
+    fontSize: 13,
+    marginTop: 4,
+  },
   primaryButton: {
     alignItems: 'center',
     backgroundColor: '#2563eb',

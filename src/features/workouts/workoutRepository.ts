@@ -58,6 +58,21 @@ export async function createWorkout(input: CreateWorkoutInput): Promise<Workout>
   return workout;
 }
 
+export async function getWorkoutById(id: string): Promise<Workout | null> {
+  const database = await getDatabase();
+  const row = await database.getFirstAsync<WorkoutRow>(
+    `
+      SELECT id, name, is_active, created_at, updated_at
+      FROM workouts
+      WHERE id = ?
+      LIMIT 1
+    `,
+    [id],
+  );
+
+  return row ? mapWorkoutRow(row) : null;
+}
+
 export async function listActiveWorkouts(): Promise<Workout[]> {
   const database = await getDatabase();
   const rows = await database.getAllAsync<WorkoutRow>(
@@ -70,4 +85,46 @@ export async function listActiveWorkouts(): Promise<Workout[]> {
   );
 
   return rows.map(mapWorkoutRow);
+}
+
+export async function updateWorkoutName(id: string, name: string): Promise<Workout> {
+  const normalizedName = normalizeWorkoutName(name);
+
+  if (!validateWorkoutName(normalizedName)) {
+    throw new Error('O nome do treino e obrigatorio.');
+  }
+
+  const database = await getDatabase();
+  const now = new Date().toISOString();
+
+  await database.runAsync(
+    `
+      UPDATE workouts
+      SET name = ?, updated_at = ?
+      WHERE id = ? AND is_active = 1
+    `,
+    [normalizedName, now, id],
+  );
+
+  const workout = await getWorkoutById(id);
+
+  if (!workout || !workout.isActive) {
+    throw new Error('Treino nao encontrado.');
+  }
+
+  return workout;
+}
+
+export async function deactivateWorkout(id: string): Promise<void> {
+  const database = await getDatabase();
+  const now = new Date().toISOString();
+
+  await database.runAsync(
+    `
+      UPDATE workouts
+      SET is_active = 0, updated_at = ?
+      WHERE id = ? AND is_active = 1
+    `,
+    [now, id],
+  );
 }

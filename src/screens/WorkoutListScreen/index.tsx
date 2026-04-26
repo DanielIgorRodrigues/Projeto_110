@@ -73,9 +73,13 @@ export function WorkoutListScreen({ navigation }: Props) {
           data={workouts}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <View style={styles.workoutItem}>
+            <TouchableOpacity
+              style={styles.workoutItem}
+              onPress={() => navigation.navigate('WorkoutDetails', { workoutId: item.id })}
+            >
               <Text style={styles.workoutName}>{item.name}</Text>
-            </View>
+              <Text style={styles.workoutHint}>Toque para gerenciar</Text>
+            </TouchableOpacity>
           )}
         />
       ) : null}
