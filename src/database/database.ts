@@ -1,0 +1,16 @@
+import * as SQLite from 'expo-sqlite';
+
+import { runMigrations } from './migrations';
+
+const DATABASE_NAME = 'projeto110.db';
+
+let database: SQLite.SQLiteDatabase | null = null;
+
+export async function getDatabase() {
+  if (!database) {
+    database = await SQLite.openDatabaseAsync(DATABASE_NAME);
+    await runMigrations(database);
+  }
+
+  return database;
+}
