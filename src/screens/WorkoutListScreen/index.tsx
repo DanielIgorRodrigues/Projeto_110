@@ -2,6 +2,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { listActiveWorkouts } from '../../features/workouts/workoutRepository';
 import type { Workout } from '../../features/workouts/types';
@@ -11,6 +12,7 @@ import { styles } from './styles';
 type Props = NativeStackScreenProps<RootStackParamList, 'WorkoutList'>;
 
 export function WorkoutListScreen({ navigation }: Props) {
+  const insets = useSafeAreaInsets();
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -36,7 +38,7 @@ export function WorkoutListScreen({ navigation }: Props) {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingBottom: Math.max(insets.bottom, 24) }]}>
       <View style={styles.header}>
         <Text style={styles.title}>Seus treinos</Text>
         <Text style={styles.description}>
