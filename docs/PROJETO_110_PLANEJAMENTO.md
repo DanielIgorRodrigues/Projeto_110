@@ -68,11 +68,6 @@ Usar banco local e uma boa decisao para o Projeto 110 porque o app tera dados re
 - Peso corporal por data.
 - Medidas corporais por data.
 
-### Candidatos para armazenamento local
-
-- SQLite.
-- Outra solucao local equivalente, se fizer mais sentido para React Native e para o nivel atual do projeto.
-
 ### Decisao aprovada
 
 O Projeto 110 usara a seguinte stack inicial:
@@ -93,6 +88,64 @@ Neste primeiro momento, nao sera usado backend, autenticacao, ORM ou biblioteca 
 Essa stack reduz complexidade inicial, favorece aprendizado, permite evolucao gradual e atende ao requisito de funcionamento local com banco de dados desde o inicio.
 
 Jest entra desde a fundacao do projeto para permitir testes unitarios simples de regras, validacoes, funcoes auxiliares e acesso a dados quando fizer sentido.
+
+### Banco local
+
+O banco local aprovado para o Projeto 110 e SQLite via `expo-sqlite`.
+
+A implementacao inicial deve usar `expo-sqlite` diretamente, sem ORM. Essa escolha mantem o projeto mais simples para aprendizado e evita adicionar uma camada de abstracao antes da necessidade real.
+
+### Estrategia inicial de banco
+
+- Usar SQL explicito e pequeno.
+- Criar uma camada simples de acesso a dados por modulo.
+- Comecar com migrations simples.
+- Usar `PRAGMA user_version` para controlar a versao do banco.
+- Gerar IDs pela aplicacao.
+- Usar datas em formato ISO string.
+- Evitar exclusao definitiva quando o dado puder ter historico futuro.
+
+### Tabelas previstas para o MVP
+
+- `workouts`
+- `workout_exercises`
+- `workout_sessions`
+- `workout_session_exercises`
+- `body_weights`
+- `body_measurements`
+
+### Tabela inicial da Sprint 1
+
+Na Sprint 1, a unica tabela necessaria e `workouts`.
+
+```sql
+CREATE TABLE workouts (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  is_active INTEGER NOT NULL DEFAULT 1,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+```
+
+### Regras da tabela `workouts`
+
+- `name` e obrigatorio.
+- `id` deve ser gerado pela aplicacao.
+- `created_at` e `updated_at` devem usar formato ISO string.
+- `is_active` deve ser usado para ocultar treinos sem apagar dados.
+- A lista principal deve exibir apenas treinos com `is_active = 1`.
+
+### Testes relacionados ao banco
+
+No inicio, os testes unitarios com Jest devem focar em:
+
+- Validacao de nome obrigatorio.
+- Normalizacao dos dados antes de salvar.
+- Mapeamento entre dados do banco e objetos usados no app.
+- Regras pequenas de negocio.
+
+Testes de integracao mais completos com SQLite podem ser avaliados depois que a estrutura inicial estiver funcionando.
 
 ## 5. Epicos
 
@@ -392,9 +445,8 @@ A sprint sera considerada concluida quando:
 
 ### Curto prazo
 
-- Detalhar modelo inicial do banco local.
-- Criar historias da Sprint 1 no GitHub.
 - Criar projeto mobile.
+- Criar historias da Sprint 1 no GitHub.
 - Implementar cadastro e listagem de treinos.
 
 ### Medio prazo
@@ -429,9 +481,9 @@ A sprint sera considerada concluida quando:
 - [x] Escolher tecnologia do banco local.
 - [x] Decidir se sera usado Expo ou React Native CLI.
 - [x] Definir biblioteca de navegacao.
+- [x] Definir estrategia simples para migracoes do banco.
 - [ ] Configurar Jest para testes unitarios.
 - [ ] Definir estrutura inicial de pastas.
-- [ ] Definir estrategia simples para migracoes do banco.
 
 ### GitHub
 
@@ -453,8 +505,10 @@ A sprint sera considerada concluida quando:
 ### 2026-04-25 - Banco local desde o inicio
 
 - Decidido que o app deve usar uma base de dados local desde a primeira versao.
-- SQLite foi indicado como candidato inicial.
-- A escolha final sera feita em conversa tecnica antes da implementacao.
+- Definido SQLite via `expo-sqlite` como banco local do app.
+- Definido uso de SQL direto, sem ORM no primeiro momento.
+- Definido uso de migrations simples com `PRAGMA user_version`.
+- Definida tabela `workouts` como primeira tabela da Sprint 1.
 
 ### 2026-04-25 - Stack inicial aprovada
 
