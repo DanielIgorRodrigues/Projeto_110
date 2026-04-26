@@ -158,6 +158,22 @@ No inicio, os testes unitarios com Jest devem focar em:
 
 Testes de integracao mais completos com SQLite podem ser avaliados depois que a estrutura inicial estiver funcionando.
 
+### Padrao de organizacao de telas
+
+Cada tela deve ficar em uma pasta propria dentro de `src/screens`.
+
+Padrao:
+
+```txt
+src/screens/NomeDaTela/
+  index.tsx
+  styles.ts
+```
+
+- `index.tsx` deve conter o componente da tela.
+- `styles.ts` deve conter os estilos da tela.
+- Esse padrao evita arquivos grandes e separa melhor estrutura visual de regras de apresentacao.
+
 ## 5. Epicos
 
 ### Epico 1 - Gestao de treinos
