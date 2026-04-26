@@ -1,5 +1,6 @@
 import { getDatabase } from '../../database/database';
 import type { CreateWorkoutInput, Workout } from './types';
+import { normalizeWorkoutName, validateWorkoutName } from './workoutRules';
 
 type WorkoutRow = {
   id: string;
@@ -24,9 +25,9 @@ function mapWorkoutRow(row: WorkoutRow): Workout {
 }
 
 export async function createWorkout(input: CreateWorkoutInput): Promise<Workout> {
-  const name = input.name.trim();
+  const name = normalizeWorkoutName(input.name);
 
-  if (!name) {
+  if (!validateWorkoutName(name)) {
     throw new Error('O nome do treino e obrigatorio.');
   }
 
